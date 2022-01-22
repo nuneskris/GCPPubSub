@@ -51,7 +51,7 @@ public class PublishCricketScore {
                             .setEnableMessageOrdering(true)
                             .build();
 
-            try (CSVReader reader = new CSVReader(new FileReader("file.csv"))) {
+            try (CSVReader reader = new CSVReader(new FileReader("IPLBall-by-Ball 2008-2020.csv"))) {
                 String[] lineInArray;
                 while ((lineInArray = reader.readNext()) != null) {
                     System.out.println(lineInArray[0] + lineInArray[1] + "etc...");
