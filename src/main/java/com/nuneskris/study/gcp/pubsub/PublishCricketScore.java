@@ -70,6 +70,19 @@ public class PublishCricketScore {
                     .setBattingTeam("Nunes")
                     .setBowler("Juan")
                     .setBowlingTeam("Roach")
+                    .setExtraRuns(1)
+                    .setDismissalKind("AA")
+                    .setExtrasType("SSS")
+                    .setFielder("ww")
+                    .setInning(1)
+                    .setIsWicket(1)
+                    .setNonBoundary(2)
+                    .setNonStriker("eee")
+                    .setOver(1)
+                    .setPlayerDismissed("ss")
+                    .setOver(1)
+                    .setTotalRuns(2)
+                    .setOver(1)
                     .build();
 
             ByteArrayOutputStream byteStream = new ByteArrayOutputStream();
