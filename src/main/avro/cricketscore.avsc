@@ -1,0 +1,78 @@
+{
+  "type": "record",
+  "name": "CricketScore",
+  "fields": [
+    {
+      "name": "id",
+      "type": "string"
+    },
+    {
+      "name": "inning",
+      "type": "int"
+    },
+    {
+      "name": "over",
+      "type": "int"
+    },
+    {
+      "name": "ball",
+      "type": "int"
+    },
+    {
+      "name": "batsman",
+      "type": "string"
+    },
+    {
+      "name": "non_striker",
+      "type": "string"
+    },
+    {
+      "name": "bowler",
+      "type": "string"
+    },
+    {
+      "name": "batsman_runs",
+      "type": "int"
+    },
+    {
+      "name": "extra_runs",
+      "type": "int"
+    },
+    {
+      "name": "total_runs",
+      "type": "int"
+    },
+    {
+      "name": "non_boundary",
+      "type": "int"
+    },
+    {
+      "name": "is_wicket",
+      "type": "int"
+    },
+    {
+      "name": "dismissal_kind",
+      "type": "string"
+    },
+    {
+      "name": "player_dismissed",
+      "type": "string"
+    },
+    {
+      "name": "fielder",
+      "type": "string"
+    },
+    {
+      "name": "extras_type",
+      "type": "string"
+    },
+    {
+      "name": "batting_team",
+      "type": "string"
+    },
+    {
+      "name": "bowling_team",
+      "type": "string"
+    }
+  ]
+}
