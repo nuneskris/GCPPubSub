@@ -41,6 +41,14 @@ public class PublishCricketScore {
         Publisher publisher = null;
         try {
 
+            try (CSVReader reader = new CSVReader(new FileReader("src/main/resources/IPLBall-by-Ball 2008-2020.csv"))) {
+                String[] lineInArray;
+                while ((lineInArray = reader.readNext()) != null) {
+                    System.out.println(lineInArray[0] + lineInArray[1] + "etc...");
+                }
+            }
+
+
             TopicName topicName = TopicName.of(projectId, topicId);
             // Create a publisher and set message ordering to true.
 
@@ -51,12 +59,7 @@ public class PublishCricketScore {
                             .setEnableMessageOrdering(true)
                             .build();
 
-            try (CSVReader reader = new CSVReader(new FileReader("IPLBall-by-Ball 2008-2020.csv"))) {
-                String[] lineInArray;
-                while ((lineInArray = reader.readNext()) != null) {
-                    System.out.println(lineInArray[0] + lineInArray[1] + "etc...");
-                }
-            }
+
 
             CricketScore score = CricketScore.newBuilder()
                     .setId("12345")
