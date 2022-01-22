@@ -7,3 +7,9 @@ cd $HOME && git clone https://github.com/nuneskris/GCPPubSub.git
 cd GCPPubSub
 
 mvn compile exec:java -Dexec.mainClass=com.nuneskris.study.gcp.pubsub.PublisherExample -Dexec.args="java-maven-dataflow my-topic"
+
+-----------------------------------------------
+
+git pull origin master
+
+mvn compile exec:java -Dexec.mainClass=com.nuneskris.study.gcp.pubsub.PublishCricketScore
