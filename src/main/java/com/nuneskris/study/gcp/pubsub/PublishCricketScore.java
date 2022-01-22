@@ -21,7 +21,7 @@ public class PublishCricketScore {
 
     private  final AvroCoder<CricketDelivery> CODER = AvroCoder.of(CricketDelivery.class);
 
-    private static void main(String[] args){
+    public static void main(String... args) throws Exception {
         PublishCricketScore publishCricketScore = new  PublishCricketScore();
         try {
             publishCricketScore.publisherExample("java-maven-dataflow","avro-topic");
