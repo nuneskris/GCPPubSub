@@ -41,64 +41,54 @@ public class PublishCricketScore {
         Publisher publisher = null;
         try {
 
-            /*
-            try (CSVReader reader = new CSVReader(new FileReader("src/main/resources/IPLBall-by-Ball 2008-2020.csv"))) {
-                String[] lineInArray;
-                while ((lineInArray = reader.readNext()) != null) {
-                    System.out.println(lineInArray[0] + lineInArray[1] + "etc...");
-                }
-            } */
-
-
             TopicName topicName = TopicName.of(projectId, topicId);
             // Create a publisher and set message ordering to true.
 
             publisher =  Publisher.newBuilder(topicName)
-                            // Sending messages to the same region ensures they are received in order
-                            // even when multiple publishers are used.
-                         //   .setEndpoint("us-east1-pubsub.googleapis.com:443")
-                            .setEnableMessageOrdering(true)
-                            .build();
-
-
-
-            CricketScore score = CricketScore.newBuilder()
-                    .setId("12345")
-                    .setBall(1)
-                    .setBatsman("Kris")
-                    .setBatsmanRuns(1)
-                    .setBattingTeam("Nunes")
-                    .setBowler("Juan")
-                    .setBowlingTeam("Roach")
-                    .setExtraRuns(1)
-                    .setDismissalKind("AA")
-                    .setExtrasType("SSS")
-                    .setFielder("ww")
-                    .setInning(1)
-                    .setIsWicket(1)
-                    .setNonBoundary(2)
-                    .setNonStriker("eee")
-                    .setOver(1)
-                    .setPlayerDismissed("ss")
-                    .setOver(1)
-                    .setTotalRuns(2)
-                    .setOver(1)
+                    // Sending messages to the same region ensures they are received in order
+                    // even when multiple publishers are used.
+                    //   .setEndpoint("us-east1-pubsub.googleapis.com:443")
+                    .setEnableMessageOrdering(true)
                     .build();
 
             ByteArrayOutputStream byteStream = new ByteArrayOutputStream();
             Encoder encoder = EncoderFactory.get().jsonEncoder(CricketScore.getClassSchema(), byteStream);
-            // Encode the object and write it to the output stream.
-            score.customEncode(encoder);
-            encoder.flush();
-            // Publish the encoded object as a Pub/Sub message.
-            ByteString data = ByteString.copyFrom(byteStream.toByteArray());
-            PubsubMessage message = PubsubMessage.newBuilder().setData(data).build();
-            System.out.println("Publishing message: " + message);
 
-            ApiFuture<String> future = publisher.publish(message);
-            System.out.println("Published message ID: " + future.get());
+            try (CSVReader reader = new CSVReader(new FileReader("src/main/resources/IPLBall-by-Ball 2008-2020.csv"))) {
+                String[] lineInArray;
+                int limitTesting = 0;
+                while ((lineInArray = reader.readNext()) != null) {
+                    CricketScore score = CricketScore.newBuilder()
+                            .setId(lineInArray[0])
+                            .setInning(Integer.valueOf(lineInArray[1]))
+                            .setOver(Integer.valueOf(lineInArray[2]))
+                            .setBall(Integer.valueOf(lineInArray[3]))
+                            .setBatsman(lineInArray[4])
+                            .setNonStriker(lineInArray[5])
+                            .setBowler(lineInArray[6])
+                            .setBatsmanRuns(Integer.valueOf(lineInArray[7]))
+                            .setExtraRuns(Integer.valueOf(lineInArray[8]))
+                            .setTotalRuns(Integer.valueOf(lineInArray[9]))
+                            .setNonBoundary(Integer.valueOf(lineInArray[10]))
+                            .setIsWicket(Integer.valueOf(lineInArray[11]))
+                            .setDismissalKind(lineInArray[12])
+                            .setPlayerDismissed(lineInArray[13])
+                            .setFielder(lineInArray[14])
+                            .setExtrasType(lineInArray[15])
+                            .setBattingTeam(lineInArray[16])
+                            .setBowlingTeam(lineInArray[17])
+                            .build();
 
 
+                    // Encode the object and write it to the output stream.
+                    score.customEncode(encoder);
+                    encoder.flush();
+                    // Publish the encoded object as a Pub/Sub message.
+                    ByteString data = ByteString.copyFrom(byteStream.toByteArray());
+                    PubsubMessage message = PubsubMessage.newBuilder().setData(data).build();
+                    ApiFuture<String> future = publisher.publish(message);
+                }
+            }
         } finally {
             if (publisher != null) {
                 publisher.shutdown();
