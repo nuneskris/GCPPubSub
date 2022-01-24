@@ -57,7 +57,7 @@ public class PublishCricketScore {
             try (CSVReader reader = new CSVReader(new FileReader("src/main/resources/IPLBall-by-Ball 2008-2020.csv"))) {
                 String[] lineInArray;
                 int limitTesting = 0;
-                while ((lineInArray = reader.readNext()) != null) {
+                while ((lineInArray = reader.readNext()) != null || limitTesting++ < 10) {
                     CricketScore score = CricketScore.newBuilder()
                             .setId(lineInArray[0])
                             .setInning(Integer.valueOf(lineInArray[1]))
