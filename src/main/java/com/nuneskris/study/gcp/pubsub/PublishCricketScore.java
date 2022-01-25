@@ -40,7 +40,7 @@ public class PublishCricketScore {
         }
     };
 
-    public  void publisherExample(String projectId, String topicId)
+    public void publisherExample(String projectId, String topicId)
             throws IOException, ExecutionException, InterruptedException, CsvValidationException {
         Publisher publisher = null;
         try {
@@ -60,6 +60,7 @@ public class PublishCricketScore {
 
             try (CSVReader reader = new CSVReader(new FileReader("src/main/resources/IPLBall-by-Ball 2008-2020.csv"))) {
                 String[] lineInArray;
+                int limitTesting = 0;
                 while ((lineInArray = reader.readNext()) != null) {
 
                     CricketScore score = CricketScore.newBuilder()
@@ -89,6 +90,7 @@ public class PublishCricketScore {
                     encoder.flush();
                     // Publish the encoded object as a Pub/Sub message.
                     ByteString data = ByteString.copyFrom(byteStream.toByteArray());
+
                     PubsubMessage message = PubsubMessage.newBuilder().setData(data).build();
 
                     ApiFuture<String> future = publisher.publish(message);
