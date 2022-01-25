@@ -28,7 +28,7 @@ public class PublishCricketScore {
     public static void main(String... args) throws Exception {
         PublishCricketScore publishCricketScore = new  PublishCricketScore();
         try {
-            publishCricketScore.publisherExample("java-maven-dataflow","avro-topic");
+            publishCricketScore.publisherExample("java-maven-dataflow","my-topic");
         } catch (IOException e) {
             e.printStackTrace();
         } catch (ExecutionException e) {
@@ -60,9 +60,8 @@ public class PublishCricketScore {
 
             try (CSVReader reader = new CSVReader(new FileReader("src/main/resources/IPLBall-by-Ball 2008-2020.csv"))) {
                 String[] lineInArray;
-                int limitTesting = 0;
-                while ((lineInArray = reader.readNext()) != null || limitTesting < 10) {
-                    limitTesting = limitTesting + 1;
+                while ((lineInArray = reader.readNext()) != null) {
+
                     CricketScore score = CricketScore.newBuilder()
                             .setId(lineInArray[0])
                             .setInning(Integer.valueOf(lineInArray[1]))
