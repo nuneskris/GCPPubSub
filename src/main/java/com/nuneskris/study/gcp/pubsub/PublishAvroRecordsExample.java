@@ -53,6 +53,7 @@ public class PublishAvroRecordsExample {
 
             Encoder encoder = null;
 
+
             // Prepare an appropriate encoder for publishing to the topic.
             switch (encoding) {
                 case BINARY:
