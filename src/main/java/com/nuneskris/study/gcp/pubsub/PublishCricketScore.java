@@ -28,7 +28,7 @@ public class PublishCricketScore {
     public static void main(String... args) throws Exception {
         PublishCricketScore publishCricketScore = new  PublishCricketScore();
         try {
-            publishCricketScore.publisherExample("java-maven-dataflow","my-topic");
+            publishCricketScore.publisherExample("java-maven-dataflow","my-avro-topic");
         } catch (IOException e) {
             e.printStackTrace();
         } catch (ExecutionException e) {
