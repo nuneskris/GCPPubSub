@@ -1,6 +1,7 @@
 {
   "type": "record",
   "name": "CricketScore",
+    "namespace":"utilities",
   "fields": [
     {
       "name": "id",

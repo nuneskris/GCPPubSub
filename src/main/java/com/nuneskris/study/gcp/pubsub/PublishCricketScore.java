@@ -22,7 +22,8 @@ import java.io.IOException;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.TimeUnit;
 import com.google.common.util.concurrent.MoreExecutors;
-import utilities.State;
+import utilities.CricketScore;
+
 
 public class PublishCricketScore {
 
@@ -73,7 +74,7 @@ public class PublishCricketScore {
 
                 case JSON:
                     System.out.println("Preparing a JSON encoder...");
-                    encoder = EncoderFactory.get().jsonEncoder(State.getClassSchema(), byteStream);
+                    encoder = EncoderFactory.get().jsonEncoder(CricketScore.getClassSchema(), byteStream);
                     break;
             }
 
